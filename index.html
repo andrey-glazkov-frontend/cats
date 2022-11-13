@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Проект с котиками</title>
+</head>
+<body>
+    <section class="board">
+        <div class="button_board">
+
+
+            <button>Добавить котенка</button>
+
+            <div class="popup">
+              <div class="popup__container form">
+                <div class="popup__wrapper">
+                    <a href="#" class="close"></a>
+                  <div id="blablabla">
+                    <form class="form__group" classrole="form" action="/requestFine" autocomplete="off" method="POST">
+                      <label>Введите имя котенка:</label>
+                      <input type="text" name="nameReq">
+                      <label>Опишите котенка:</label>
+                      <input type="text" name="lastNameReq">
+                    
+
+                      <label for="budget">Выставть рейтинг котенку:</label>
+                      <select >
+                        <option value="" disabled selected hidden>Выберите вариант</option> 
+                        <option value="1" placeholder="Выберите вариант">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                      </select>
+                      
+                      <button type="submit" data-btns class="btn btn-success">Отправить</button>
+                      
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          
+            <button class="btn_find">Выбрать котиков</button>
+            <button class="btn_delete">Убрать котика</button>
+
+        </div>
+
+    </section>
+<section class="content">
+    <div data-wr class="cards">
+        <!-- <div class="card">
+            <h3>Title1</h3>
+            <img src="https://static.mk.ru/upload/entities/2021/06/16/10/articles/facebookPicture/8b/b8/b5/f7/d5a31497c14d4e2bc37f26d7a9cf712d.jpg" alt="">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, nemo.</p>
+            <p id="features__rate-box"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+        </div>
+        <div class="card"> <h3>Title2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, nemo.</p></div>
+        <div class="card"> <h3>Title3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, nemo.</p></div> -->
+            
+    </div>
+</section>
+
+<section>
+
+  <form class="form__group" classrole="form" action="/requestFine" autocomplete="off" method="POST">
+    <label>Введите имя котенка:</label>
+    <input type="text" name="nameReq">
+    <label>Опишите котенка:</label>
+    <input type="text" name="lastNameReq">
+  
+
+    <label for="budget">Выставть рейтинг котенку:</label>
+    <select >
+      <option value="" disabled selected hidden>Выберите вариант</option> 
+      <option value="1" placeholder="Выберите вариант">1</option>  
+      <option value="2">2</option>  
+      <option value="3">3</option>  
+      <option value="4">4</option>  
+      <option value="5">5</option>  
+      <option value="6">6</option>  
+      <option value="7">7</option>  
+      <option value="8">8</option>  
+      <option value="9">9</option>  
+      <option value="10">10</option>  
+    </select>
+    
+    <button type="submit" class="btn_test">Тест кнопка</button>
+    
+  </form>
+</section>
+
+  <script src="script.js"></script>  
+</body>
+</html>
