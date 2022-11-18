@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Import Google Icon Font
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+   Compiled and minified CSS 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet"> -->
   <title>Проект с котиками</title>
 </head>
 
@@ -37,7 +43,7 @@
                 <input type="text" name="description">
 
 
-                <label for="budget">Выставть рейтинг котенку:</label>
+                <!-- <label for="budget">Выставть рейтинг котенку:</label>
                 <select>
                   <option value="" disabled selected hidden>Выберите вариант</option>
                   <option value="1" placeholder="Выберите вариант">1</option>
@@ -50,7 +56,7 @@
                   <option value="8">8</option>
                   <option value="9">9</option>
                   <option value="10">10</option>
-                </select>
+                </select> -->
                 <label>Вставте ссылку на картинку:</label>
                 <input type="text" name="img_link">
 
@@ -64,7 +70,7 @@
 
 
       <button class="btn_find">Выбрать котиков</button>
-      <!-- <button class="btn_delete">Убрать котика</button> -->
+      <button class="btn_delete hidden">Убрать котика</button>
 
     </div>
 
@@ -84,7 +90,44 @@
 
     </div>
   </section>
+  <div class="popup2">
+    <div class="popup__container2 form">
+      <div class="popup__wrapper2">
+        <a href="#" class="closING"></a>
+        <div id="blablabla2">
+          <form name="edit_cat" class="form__group" classrole="form" action="/requestFine" autocomplete="off"
+            method="PUT">
 
+            <label>Измените имя котенка:</label>
+            <input type="text" name="Name">
+            <label>Измените описание котенка:</label>
+            <input type="text" name="description">
+
+
+            <!-- <label for="budget">Выставть рейтинг котенку:</label>
+            <select>
+              <option value="" disabled selected hidden>Выберите вариант</option>
+              <option value="1" placeholder="Выберите вариант">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select> -->
+            <label>Измените ссылку на картинку:</label>
+            <input type="text" name="img_link">
+
+            <button type="submit" data-btns class="btn btn-success">Отправить</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <script src="script.js"></script>
