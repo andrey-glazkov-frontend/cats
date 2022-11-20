@@ -1,3 +1,7 @@
+/* 
+В проекте используется большое количество обработчиков событий, я знаю про делегирование событий, однако не стал переделавыть уже готовы функционал под него
+*/
+
 const $btnClose = document.querySelector('.close');
 const $btnClose2 = document.querySelector('.closING');
 console.log($btnClose2)
@@ -12,6 +16,7 @@ const catAdd = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/add'
 const catDel = 'http://sb-cats.herokuapp.com/api/2//andrey-glazkov-frontend/delete/'
 const cardAdd = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/add'
 const cardEdit = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/update/'
+
 
 async function deleteCat(id) {
     try {
@@ -34,7 +39,7 @@ async function catAdder(catCardInfo) {
             headers: {
                 'Content-type': 'aplication/json',
             },
-            body: JSON.stringify(catCardInfo),
+
         })
         if (addResponse.status !== 200) {
             throw new Error()
@@ -55,7 +60,7 @@ class API {
             const response = await fetch(`${this.baseUrl}/add`, {
                 method: 'POST',
                 headers: {
-                    'Content-type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             })
@@ -67,16 +72,36 @@ class API {
             throw new Error(error)
         }
     }
-    async CatEdit(data, catEditId) {
+    async CatEdit(catEditId) {
         try {
             const EditResponse = await fetch(`${this.baseUrl}/update/${catEditId}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-type': 'aplication/json',
+                    'Content-Type': 'application/json',
                 },
 
                 body: JSON.stringify(data),
             })
+            // return console.log(JSON.stringify(data))
+            if (EditResponse.status !== 200) {
+                throw new Error()
+            }
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    async CatShow(catEditId) {
+        try {
+            const EditResponse = await fetch(`${this.baseUrl}/show/${catEditId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+                // body: JSON.stringify(data),
+            })
+            // return console.log(JSON.stringify(data))
             if (EditResponse.status !== 200) {
                 throw new Error()
             }
@@ -167,13 +192,16 @@ const cardGenerator = (post) => {
 
 const form2 = document.querySelector('#blablabla2');
 const popup2 = document.querySelector('.popup2');
+const cardOpen = document.querySelector('#blablabla3')
+const popup3 = document.querySelector('.popup3');
+
 
 $wr.addEventListener('click', (event) => {
     console.log(event.target.dataset.action)
 
 
 
-    if (event.target.dataset.action) {
+    if (event.target.dataset.action == 'edit_cat') {
         form2.classList.add('open');
         popup2.classList.add('popup_open');
 
@@ -186,22 +214,81 @@ $wr.addEventListener('click', (event) => {
             event.preventDefault()
 
             const data = Object.fromEntries(new FormData(event.target).entries())
-            data.name = data.Name
             data.description = data.description
             data.rate = +data.rate
             data.favorite = data.favorite === 'on'
             form2.classList.remove('open');
             popup2.classList.remove('popup_open');
-            // console.log(data)
-            api.CatEdit(JSON.stringify(data), catId).then(() => {
-                // cardGenerator(data) 
-                console.log(JSON.stringify(data))
+            for (key in data) {
+                if (data[key] == '') {
+                    delete data[key]
+                }
+
+            }
+
+            api.CatEdit(data, catId).then(() => {
+                // cardGenerator(data)
+                window.location.reload();
             }).catch(alert)
 
         })
+    } else if (event.target.dataset.action == 'Show_cat') {
+        cardOpen.classList.add('open');
+        popup3.classList.add('popup_open');
+        const $cardWr2 = event.target.closest('[data-card_id]')
+        const catId2 = $cardWr2.dataset.card_id
+        // api.CatShow(catId2).then((result) => {
+        //     console.log(result)
+        // }
+        // )
+        async function waitingFetch2() {
+            const response = await fetch(`${catInfo}/${catId2}`);
+            const json = await response.json();
+
+            return json
+        }
+
+
+        waitingFetch2()
+
+            .then((json) => {
+
+                // const postsHTML = json.data.map(post => cardGenerator(post)).join("")
+                const addCardHtml = json.data
+                console.log(addCardHtml)
+                catCardOpen(addCardHtml)
+            });
+
+
     }
 })
 
+function catCardOpen(post) {
+    const newHTML = document.createElement('div');
+
+    newHTML.innerHTML = `
+    <div data-cl class="card" data-card_id=${post.id}>
+        <h3>${post.name}</h3>
+        <img src="${post.img_link}" alt="${post.name}">
+        <p>${post.description}</p>
+        <p id="features__rate-box"></p>
+        <div class="button_board">
+        
+        </div>
+        </div>
+
+    `;
+    cardOpen.append(newHTML)
+}
+const clossing_card = document.querySelector('.clossing_card')
+clossing_card.addEventListener('click', () => {
+    cardOpen.classList.remove('open');
+    popup3.classList.remove('popup_open');
+    // const removable = document.querySelector('[data-cl]')
+    cardOpen.innerHTML = ''
+
+
+});
 $btnClose2.addEventListener('click', () => {
     form2.classList.remove('open');
     popup2.classList.remove('popup_open');
@@ -212,7 +299,7 @@ $btnClose2.addEventListener('click', () => {
 
 
 
-
+// ДОРАБОТАТЬ ОЦЕНКУ
 function catRater() {
 
     let rate = document.querySelectorAll('#features__rate-box')
@@ -255,6 +342,7 @@ button.addEventListener('click', () => {
     form.classList.add('open');
     popup.classList.add('popup_open');
     $btnDel.classList.add('hidden');
+    cnt = 0
     inputHider()
 });
 
@@ -408,6 +496,26 @@ document.forms.add_cat.addEventListener('submit', (event) => {
         cardGenerator(data)
     }).catch(alert)
 
+})
+
+console.log(document.forms.add_cat.name)
+
+const $nameInput = document.forms.add_cat.name
+
+const rawFormDataFromLS = localStorage.getItem(document.forms.add_cat.name)
+const formDataFromLS = rawFormDataFromLS ? JSON.parse(rawFormDataFromLS) : undefined
+
+if (formDataFromLS) {
+    Object.keys(formDataFromLS).forEach(key => {
+        document.forms.add_cat[key].value = formDataFromLS[key]
+    })
+}
+
+
+document.forms.add_cat.addEventListener('input', (e) => {
+    const formDataObj = Object.fromEntries(new FormData(document.forms.add_cat).entries())
+    console.log({ formDataObj })
+    localStorage.setItem(document.forms.add_cat.name, JSON.stringify(formDataObj))
 })
 
 

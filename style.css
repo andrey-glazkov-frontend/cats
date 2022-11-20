@@ -92,7 +92,8 @@ button:hover {
 
 
 .popup,
-.popup2 {
+.popup2,
+.popup3 {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -109,7 +110,8 @@ button:hover {
   display: block;
 }
 
-.popup_open2 {
+.popup_open2,
+.popup_open3 {
   display: block;
 }
 
@@ -124,7 +126,8 @@ button:hover {
   width: 100%;
 }
 
-.popup__container2 {
+.popup__container2,
+.popup__container3 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -255,5 +258,38 @@ button:hover {
 }
 
 .closING:after {
+  transform: rotate(-45deg);
+}
+
+
+
+.clossing_card {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.clossing_card:hover {
+  opacity: 1;
+}
+
+.clossing_card:before,
+.clossing_card:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: black;
+}
+
+.clossing_card:before {
+  transform: rotate(45deg);
+}
+
+.clossing_card:after {
   transform: rotate(-45deg);
 }
