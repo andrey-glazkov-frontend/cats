@@ -11,11 +11,11 @@ var cnt = 0
 let $buttonBoard = document.querySelector('.button_board')
 
 
-const catInfo = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/show'
-const catAdd = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/add'
-const catDel = 'http://sb-cats.herokuapp.com/api/2//andrey-glazkov-frontend/delete/'
-const cardAdd = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/add'
-const cardEdit = 'http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/update/'
+const catInfo = 'https://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/show'
+const catAdd = 'https://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/add'
+const catDel = 'https://sb-cats.herokuapp.com/api/2//andrey-glazkov-frontend/delete/'
+const cardAdd = 'https://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/add'
+const cardEdit = 'https://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend/update/'
 
 
 async function deleteCat(id) {
@@ -111,7 +111,7 @@ class API {
     }
 }
 
-const api = new API('http://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend')
+const api = new API('https://sb-cats.herokuapp.com/api/2/andrey-glazkov-frontend')
 
 
 
@@ -190,6 +190,9 @@ const cardGenerator = (post) => {
 
 // })
 
+
+
+// протестировать попап через использоапния одного селктора с классои
 const form2 = document.querySelector('#blablabla2');
 const popup2 = document.querySelector('.popup2');
 const cardOpen = document.querySelector('#blablabla3')
@@ -208,7 +211,6 @@ $wr.addEventListener('click', (event) => {
         const $cardWr = event.target.closest('[data-card_id]')
         const catId = $cardWr.dataset.card_id
 
-        console.log(catId)
 
         document.forms.edit_cat.addEventListener('submit', (event) => {
             event.preventDefault()
@@ -299,7 +301,7 @@ $btnClose2.addEventListener('click', () => {
 
 
 
-// ДОРАБОТАТЬ ОЦЕНКУ
+// ДОРАБОТАТЬ ОЦЕНКУ на тест: вложить в функцию тело запроса
 function catRater() {
 
     let rate = document.querySelectorAll('#features__rate-box')
@@ -317,7 +319,7 @@ async function waitingFetch() {
     const json = await response.json();
     return json
 }
-
+// для теста, проверить меттод обавления карточки с семинара, посмотреть что получает html в результате, почему плывет верстка
 async function render() {
     waitingFetch()
 
